@@ -1,0 +1,16 @@
+<h4>Request Form</h4>
+<div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">movie</i>
+        <input (keydown.enter)="searchMovie($event)" type="text" name="movieInput" id="movieInput" class="autocomplete">
+        <label for="autocomplete-input">Title</label>
+      </div>
+    </div>
+  </form>
+  <br>
+  <app-search-results [searchResults]="movieResults"></app-search-results>
+  <br>
+  <app-requests></app-requests>
+</div>
