@@ -10,7 +10,7 @@
     </div>
   </form>
   <br>
-  <app-search-results [searchResults]="movieResults"></app-search-results>
+  <app-search-results (movieClicked)="passMovieDetails($event)" [searchResults]="movieResults"></app-search-results>
   <br>
   <app-requests></app-requests>
 </div>
