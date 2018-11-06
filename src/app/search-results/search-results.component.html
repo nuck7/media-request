@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-image">
             <img src="http://image.tmdb.org/t/p/w185//{{movie.poster_path}}">
-            <span class="card-title">{{ movie.title }}</span>
+            <span class="card-title">{{ movie.title }} - {{ movie.release_date.split('-')[0] }}</span>
           </div>
           <div class="card-content">
             <p>Overview: {{ movie.overview }}.</p>

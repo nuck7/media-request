@@ -1,13 +1,11 @@
+<h4>Request List</h4>
 <table id="requestList">
   <tr>
-    <td>Title</td>
-    <td>Genre</td>
+    <th>Title</th>
+    <th>Year</th>
   </tr>
-  <tr>
-    <td>Spiderman</td>
-    <td>SuperHero</td>
-    <td>
-      
-    </td>
+  <tr *ngFor="let movie of requestList">
+    <td>{{ movie.title }}</td>
+    <td>{{ movie.year }}</td>
   </tr>
 </table>

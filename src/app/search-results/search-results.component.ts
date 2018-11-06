@@ -16,9 +16,12 @@ export class SearchResultsComponent implements OnInit {
   }
 
   addMovieToList(event: any) {
-    let movieDetails = event.target.parentNode.parentNode.firstChild.childNodes[1].innerHTML
+    let movieDetails = event.target.parentNode.parentNode.firstChild.childNodes[1].innerHTML.split(' - ')
     console.log('Movie Title: ' + movieDetails)
-    this.movieClicked.emit(movieDetails)
+    this.movieClicked.emit({
+      title:movieDetails[0],
+      year:movieDetails[1]
+    })
     //console.log('Clicked add to list button: ' + JSON.stringify(event.target.parentNode.nodeName))
   }
 }
