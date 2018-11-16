@@ -15,12 +15,11 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
   }
 
-  addMovieToList(event: any) {
-    let movieDetails = event.target.parentNode.parentNode.firstChild.childNodes[1].innerHTML.split(' - ')
-    console.log('Movie Title: ' + movieDetails)
+  addMovieToList(movie: any) {
+    console.log('Movie Title: ' + movie)
     this.movieClicked.emit({
-      title:movieDetails[0],
-      year:movieDetails[1]
+      ...movie,
+      year: movie.release_date.split('-')[0]
     })
     //console.log('Clicked add to list button: ' + JSON.stringify(event.target.parentNode.nodeName))
   }

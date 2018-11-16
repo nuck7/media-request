@@ -1,11 +1,26 @@
 <h4>Request List</h4>
-<table id="requestList">
-  <tr>
-    <th>Title</th>
-    <th>Year</th>
-  </tr>
-  <tr *ngFor="let movie of requestList">
-    <td>{{ movie.title }}</td>
-    <td>{{ movie.year }}</td>
-  </tr>
+<table mat-table id="requestList" [dataSource]="requestList" class="mat-elevation-z8">
+  <!--
+
+ <ng-container *ngFor="let movie of requestList">
+  -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let movie">{{ movie.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="release_date">
+    <th mat-header-cell *matHeaderCellDef>Release Date</th>
+    <td mat-cell *matCellDef="let movie">{{ movie.release_date }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<div class="example-button-row">
+  <button mat-raised-button color="primary" (click)="submitRequest()">Submit Requests</button>
+</div>
+
+<br />
+<br />
+{{ requests | json }}

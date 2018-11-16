@@ -1,14 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RequestFormComponent } from './request-form/request-form.component';
-import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { RequestsComponent } from './requests/requests.component';
-import { SearchResultsComponent } from './search-results/search-results.component';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { RequestFormComponent } from './request-form/request-form.component'
+import { LoginComponent } from './login/login.component'
+import { HttpClientModule } from '@angular/common/http'
+import { RouterModule, Routes } from '@angular/router'
+import { RequestsComponent } from './requests/requests.component'
+import { SearchResultsComponent } from './search-results/search-results.component'
+import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { environment } from '../environments/environment'
+import { MatCardModule } from '@angular/material/card'
+import { MatInputModule } from '@angular/material/input'
+import { MatTableModule } from '@angular/material/table'
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -16,14 +28,25 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     RequestFormComponent,
     LoginComponent,
     RequestsComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    NavbarComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot([])
-
+    RouterModule.forRoot([]),
+    AngularFireModule.initializeApp(environment.firebase_config),
+    AngularFirestoreModule,
+    MatCardModule,
+    MatInputModule,
+    MatTableModule,
+    MatGridListModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatToolbarModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

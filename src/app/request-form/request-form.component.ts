@@ -20,12 +20,12 @@ export class RequestFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchMovie(event: KeyboardEvent) {
+  searchMovie(event: any) {
     this.movieInput = event.target.value
     console.log(JSON.stringify(event.target.value))
   
     this.movieService.searchMovies(this.movieInput)
-    .subscribe((data:object) => {
+    .subscribe((data:any) => {
       console.log(JSON.stringify(data.results))
       this.movieResults = data.results
     })

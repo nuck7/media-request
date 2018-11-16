@@ -1,21 +1,22 @@
 <div class="continer">
-
-  <div class="row">
-    <div *ngFor="let movie of searchResults">
-      <div class="col s12 m3" *ngIf="movie.title && movie.overview && movie.poster_path">
-        <div class="card">
-          <div class="card-image">
-            <img src="http://image.tmdb.org/t/p/w185//{{movie.poster_path}}">
-            <span class="card-title">{{ movie.title }} - {{ movie.release_date.split('-')[0] }}</span>
-          </div>
-          <div class="card-content">
-            <p>Overview: {{ movie.overview }}.</p>
-          </div>
-          <div class="card-action">
-              <a class="waves-effect waves-light btn" (click)="addMovieToList($event)">Add to request list</a>
-          </div>
-        </div>
+  <div class="row" *ngIf="searchResults">
+    <mat-grid-list cols="4" rowHeight="750px">
+      <div *ngFor="let movie of searchResults">
+        <mat-grid-tile *ngIf="movie.title && movie.overview && movie.poster_path">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{ movie.title }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="http://image.tmdb.org/t/p/w185//{{movie.poster_path}}">
+            <mat-card-content >
+              <p>Overview: {{ movie.overview }}</p>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <button mat-button (click)="addMovieToList(movie)">Add to request list</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
       </div>
-    </div>
+    </mat-grid-list>
   </div>
 </div>

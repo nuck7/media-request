@@ -1,0 +1,20 @@
+.mat-card {
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+}
+.mat-card-content {
+    overflow:auto;
+    height: 15%;
+}
+
+.mat-card-header {
+    height:5%
+}
+
+.mat-card-image {
+    height: 70%
+}
+
+.mat-card-actions {
+    height: 5%
+}

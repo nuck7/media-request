@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
+import { RequestService } from 'src/app/core/services/request.service'
 
 @Component({
   selector: 'app-requests',
@@ -8,15 +9,33 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RequestsComponent implements OnInit {
 
   @Input() requestList = []
+  requests: any
+  displayedColumns: string[] = ['title','release_date']
 
+  constructor(private requestService: RequestService) { }
 
-  addMovie(movieDetails) {
-    console.log(JSON.stringify(this.requestList) + ' / ' + JSON.stringify(movieDetails) + ' / ' + this.requestList.indexOf(movieDetails))
-    if (this.requestList.indexOf(movieDetails) == -1) {
-      this.requestList.push(movieDetails)
-      console.log(movieDetails.title + ' added to ' + JSON.stringify(this.requestList))
+  ngOnInit() {
+    if (localStorage.getItem('requestList')) {
+      this.requestList = JSON.parse(localStorage.getItem('requestList'))
     }
   }
+
+  addMovie(movieDetails) {
+    if (this.requestList.indexOf(movieDetails) == -1) {
+      this.requestList.push(movieDetails)
+      localStorage.setItem('requestList', JSON.stringify(this.requestList))
+    }
+  }
+
+  submitRequest() {
+    console.log('SUBMIT REQUESTS')
+    this.requestService.getRequest()
+      .then(doc => {
+        console.log("Document data:", doc.data())
+        this.requests = doc.data()
+      })
+  }
+
 
   /*checkForDuplicates(movieDetails) {
     for (var i = 0; i < this.requestList.length; i++) {
@@ -29,9 +48,6 @@ export class RequestsComponent implements OnInit {
   }*/
 
 
-  constructor() { }
 
-  ngOnInit() {
-  }
 
 }
