@@ -9,16 +9,24 @@ import { Observable } from 'rxjs';
 })
 export class RequestService {
 
-    constructor(private http: HttpClient, private db: AngularFirestore) { }
+    constructor(private http: HttpClient, private afs: AngularFirestore) { 
+        
+    }
 
-    getRequest() {
-        let requests: object
-        let doc = this.db.collection('requests').doc('OnhqYgbgLdpbXHFvOe7y').ref.get()
-        return doc
+    getPreviousRequests(user) {
+        let requestCollection = this.afs.collection('requests', ref => ref.where('requestor', '==', user))
+        return requestCollection.get()
+        
     }
 
 
-    saveToFirebase() {
-
+    submitRequest(user, movieList) {
+        let requestCollection = this.afs.collection('requests')
+        let requestName = `${user}:${Date.now()}`
+        requestCollection.doc(requestName.toString()).set({requestor: user, date:Date.now(), movies: movieList}, { merge: true })
+        .then(response => {
+            console.log(response)
+            //return response
+        })
     }
 }

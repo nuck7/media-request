@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, ViewChild } from '@angular/core'
 import { RequestService } from 'src/app/core/services/request.service'
+import { MatSort, MatTableDataSource, MatTable } from '@angular/material'
 
 @Component({
   selector: 'app-requests',
@@ -8,46 +9,31 @@ import { RequestService } from 'src/app/core/services/request.service'
 })
 export class RequestsComponent implements OnInit {
 
-  @Input() requestList = []
+  @Input() requestList = new MatTableDataSource()
   requests: any
-  displayedColumns: string[] = ['title','release_date']
+  displayedColumns: string[] = ['title', 'date']
+  //@ViewChild(MatTable) movieTable: MatTable<any>
+  //@ViewChild(MatSort) sort: MatSort
 
   constructor(private requestService: RequestService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('requestList')) {
-      this.requestList = JSON.parse(localStorage.getItem('requestList'))
-    }
-  }
-
-  addMovie(movieDetails) {
-    if (this.requestList.indexOf(movieDetails) == -1) {
-      this.requestList.push(movieDetails)
-      localStorage.setItem('requestList', JSON.stringify(this.requestList))
-    }
-  }
-
-  submitRequest() {
-    console.log('SUBMIT REQUESTS')
-    this.requestService.getRequest()
-      .then(doc => {
-        console.log("Document data:", doc.data())
-        this.requests = doc.data()
+    /*if (this.router.url == '/search') {
+      if (localStorage.getItem('requestList')) {
+        this.requestList.data = JSON.parse(localStorage.getItem('requestList'))
+      }
+      this.requestList.sort = this.sort
+    }*/
+    this.requestService.getPreviousRequests('nchu')
+      .subscribe(requests => {
+        let tempArray = []
+        requests.forEach(request => {
+          //this.requestList.data.push(request)
+          tempArray.push(request.data())
+          //console.log(request.id, '=>', request.data());
+        })
+        //console.log(requests.docs[0].data)
+        this.requestList.data = tempArray
       })
   }
-
-
-  /*checkForDuplicates(movieDetails) {
-    for (var i = 0; i < this.requestList.length; i++) {
-      let movieDetailsValues = Object.values(movieDetails)
-      if (this.requestList[i] == o.x && arr[i].y == o.y) {
-        return i;
-      }
-    }
-    return -1;
-  }*/
-
-
-
-
 }

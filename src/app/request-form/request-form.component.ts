@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MovieService } from '../core/services/movie.service'
-import { RequestsComponent } from '../requests/requests.component';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-request-form',
@@ -12,8 +12,8 @@ export class RequestFormComponent implements OnInit {
   movieInput:string;
   movieResults:object;
 
-  @ViewChild(RequestsComponent)
-  private requests: RequestsComponent;
+  @ViewChild(CartComponent)
+  private requests: CartComponent;
   
   constructor(private movieService: MovieService) { }
 
@@ -31,8 +31,6 @@ export class RequestFormComponent implements OnInit {
     })
     return false;
   }
-
-
 
   passMovieDetails(selectedMovie) {
     console.log('passMovieDetails: ' + JSON.stringify(selectedMovie))

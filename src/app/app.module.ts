@@ -20,6 +20,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+import { CartComponent } from './cart/cart.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -29,8 +33,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     LoginComponent,
     RequestsComponent,
     SearchResultsComponent,
-    NavbarComponent
-
+    NavbarComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatGridListModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule,
+    MatSortModule,
+    MatMenuModule
     
   ],
   providers: [],

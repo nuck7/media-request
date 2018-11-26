@@ -1,18 +1,18 @@
 <div class="continer">
   <div class="row" *ngIf="searchResults">
-    <mat-grid-list cols="4" rowHeight="750px">
+    <mat-grid-list cols="{{columns}}" rowHeight="750px" gutterSize="10px">
       <div *ngFor="let movie of searchResults">
         <mat-grid-tile *ngIf="movie.title && movie.overview && movie.poster_path">
-          <mat-card>
+          <mat-card (window:resize)="setColumns($event)" (ngInit)="setColumns($event)">
             <mat-card-header>
               <mat-card-title>{{ movie.title }}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="http://image.tmdb.org/t/p/w185//{{movie.poster_path}}">
+            <img mat-card-image src="http://image.tmdb.org/t/p/w500//{{movie.poster_path}}">
             <mat-card-content >
               <p>Overview: {{ movie.overview }}</p>
             </mat-card-content>
             <mat-card-actions align="end">
-              <button mat-button (click)="addMovieToList(movie)">Add to request list</button>
+              <button mat-button (click)="addMovieToList(movie)">ADD</button>
             </mat-card-actions>
           </mat-card>
         </mat-grid-tile>
