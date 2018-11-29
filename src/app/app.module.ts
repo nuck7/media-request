@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { CartComponent } from './cart/cart.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatIconModule,
     MatSortModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
     
   ],
   providers: [],

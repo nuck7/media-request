@@ -1,11 +1,32 @@
-<div class="row">
-  <h4>Request Form</h4>
-  <form class="col s12">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Movie Title" (keydown.enter)="searchMovie($event)" type="text" name="movieInput" id="movieInput">
-    </mat-form-field>
-  </form>
-  <app-cart></app-cart>
-</div>
-<br>
-<app-search-results (movieClicked)="passMovieDetails($event)" [searchResults]="movieResults"></app-search-results>
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Request Form</h2>
+    <div class="row">
+      <table class="full-width">
+        <tr>
+          <td class="search-field">
+            <mat-card>
+              <mat-card-content>
+                <form class="col s12">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Movie Title" (keydown.enter)="searchMovie($event)" type="text" name="movieInput"
+                      id="movieInput">
+                  </mat-form-field>
+                </form>
+              </mat-card-content>
+            </mat-card>
+          </td>
+          <td class="cart">
+            <mat-card>
+              <mat-card-content>
+                <app-cart></app-cart>
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <app-search-results (movieClicked)="passMovieDetails($event)" [searchResults]="movieResults"></app-search-results>
+  </mat-card-content>
+</mat-card>

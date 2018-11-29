@@ -23,7 +23,8 @@ export class RequestService {
     submitRequest(user, movieList) {
         let requestCollection = this.afs.collection('requests')
         let requestName = `${user}:${Date.now()}`
-        requestCollection.doc(requestName.toString()).set({requestor: user, date:Date.now(), movies: movieList}, { merge: true })
+        // requestCollection.doc(requestName.toString()).set({requestor: user, date:Date.now(), movies: movieList, status: "requested"}, { merge: true })
+        requestCollection.add({requestor: user, date:Date.now(), movies: movieList, status: "requested"})
         .then(response => {
             console.log(response)
             //return response
