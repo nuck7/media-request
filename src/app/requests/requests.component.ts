@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core'
 import { RequestService } from 'src/app/core/services/request.service'
 import { MatSort, MatTableDataSource, MatTable } from '@angular/material'
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations'
+import { AuthService } from 'src/app/core/services/auth.service'
 
 @Component({
   selector: 'app-requests',
@@ -24,18 +25,16 @@ export class RequestsComponent implements OnInit {
   expandedRequest: Request
   @ViewChild(MatSort) sort: MatSort
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.requestService.getPreviousRequests('nchu')
+    console.log(this.authService.userDetails.email)
+    this.requestService.getPreviousRequests(this.authService.userDetails.email)
       .subscribe(requests => {
         let tempArray = []
         requests.forEach(request => {
-          //this.requestList.data.push(request)
           tempArray.push(request.data())
-          //console.log(request.id, '=>', request.data());
         })
-        //console.log(requests.docs[0].data)
         this.requestList.data = tempArray
 
         this.requestList.sort = this.sort

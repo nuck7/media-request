@@ -1,0 +1,3 @@
+<button mat-button *ngIf="!authService.userDetails" (click)="login()">Login</button>
+<button mat-button *ngIf="authService.userDetails" (click)="logout()">Logout</button>
+

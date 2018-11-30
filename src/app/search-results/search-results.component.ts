@@ -15,23 +15,21 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit() {
     let matCardElement = document.getElementsByClassName('mat-card')[0]
-    console.log(matCardElement)
-    //let matCardElementWidth = matCardElement.innerWidth
   }
 
   setColumns(event) {
     const element = event.target.innerWidth
     console.log(element)
 
-    if (element > 1550) {
+    /*if (element > 1550) {
       this.columns = 5
     }
 
     else if (element > 1200) {
       this.columns = 4
     }
-
-    else if (element > 850) {
+*/
+    if (element > 1100) {
       this.columns = 3
     }
 

@@ -1,9 +1,6 @@
 <h4>Cart</h4>
-<table mat-table matSort  [dataSource]="requestList" class="mat-elevation-z8">
-  <!--
 
- <ng-container *ngFor="let movie of requestList">
-  -->
+<table mat-table matSort  [dataSource]="requestList" class="mat-elevation-z8">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
     <td mat-cell *matCellDef="let movie">{{ movie.title }}</td>

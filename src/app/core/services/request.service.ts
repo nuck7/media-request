@@ -14,7 +14,7 @@ export class RequestService {
     }
 
     getPreviousRequests(user) {
-        let requestCollection = this.afs.collection('requests', ref => ref.where('requestor', '==', user))
+        let requestCollection = this.afs.collection('requests', ref => ref.where('requestor.email', '==', user))
         return requestCollection.get()
         
     }
@@ -23,11 +23,9 @@ export class RequestService {
     submitRequest(user, movieList) {
         let requestCollection = this.afs.collection('requests')
         let requestName = `${user}:${Date.now()}`
-        // requestCollection.doc(requestName.toString()).set({requestor: user, date:Date.now(), movies: movieList, status: "requested"}, { merge: true })
         requestCollection.add({requestor: user, date:Date.now(), movies: movieList, status: "requested"})
         .then(response => {
-            console.log(response)
-            //return response
+            //console.log(response)
         })
     }
 }

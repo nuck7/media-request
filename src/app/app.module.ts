@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { RequestFormComponent } from './request-form/request-form.component'
-import { LoginComponent } from './login/login.component'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule, Routes } from '@angular/router'
 import { RequestsComponent } from './requests/requests.component'
@@ -25,17 +24,22 @@ import { MatSortModule } from '@angular/material/sort';
 import { CartComponent } from './cart/cart.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthComponent } from './auth/auth.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestFormComponent,
-    LoginComponent,
     RequestsComponent,
     SearchResultsComponent,
     NavbarComponent,
-    CartComponent
+    CartComponent,
+    AuthComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +58,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatSortModule,
     MatMenuModule,
-    MatSelectModule
-    
+    MatSelectModule,
+    AngularFireAuthModule,
+    MatDialogModule
   ],
+  entryComponents: [CartComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

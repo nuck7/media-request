@@ -5,4 +5,9 @@
   <a routerLink="/requests">
     <button mat-button>My Requests</button>
   </a>
+  <span class="spacer"></span>
+  <button mat-button (click)="openCart()">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <app-auth class="auth-button"></app-auth>
 </mat-toolbar>
