@@ -3,6 +3,7 @@ import { RequestService } from 'src/app/core/services/request.service'
 import { MatSort, MatTableDataSource, MatTable } from '@angular/material'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/core/services/auth.service'
+import { MovieService } from '../core/services/movie.service'
 
 @Component({
   selector: 'app-cart',
@@ -15,9 +16,17 @@ export class CartComponent implements OnInit {
   displayedColumns: string[] = ['title', 'release_date', 'remove']
   @ViewChild(MatSort) sort: MatSort
 
-  constructor(private requestService: RequestService, private router: Router, private authService: AuthService) { }
+  cart = new MatTableDataSource()
+
+  constructor(private requestService: RequestService, private router: Router, private authService: AuthService, private movieService:MovieService) { }
 
   ngOnInit() {
+
+
+    this.requestList = this.movieService.cart
+
+
+
     if (localStorage.getItem('requestList')) {
       this.requestList.data = JSON.parse(localStorage.getItem('requestList'))
     }

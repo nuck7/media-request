@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/core/services/auth.service'
   styleUrls: ['./requests.component.css'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -28,17 +28,24 @@ export class RequestsComponent implements OnInit {
   constructor(private requestService: RequestService, private authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this.authService.userDetails.email)
     this.requestService.getPreviousRequests(this.authService.userDetails.email)
       .subscribe(requests => {
         let tempArray = []
         requests.forEach(request => {
-          tempArray.push(request.data())
+          tempArray.push(request)
         })
         this.requestList.data = tempArray
-
         this.requestList.sort = this.sort
+
       })
+  }
+
+  checkAdmin() {
+    return !this.authService.isUserAdmin()
+  }
+
+  statusChanged(request, status) {
+    this.requestService.updateRequestStatus(request.id, status)
   }
 }
 

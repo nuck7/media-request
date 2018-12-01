@@ -13,15 +13,16 @@ export class AuthService {
 
     public user: Observable<firebase.User>;
     public userDetails: firebase.User = null;
+    admins = ['chu071@gmail.com']
+
 
     constructor(public afAuth: AngularFireAuth, private router: Router) {
         this.user = afAuth.authState
-        .pipe(shareReplay(1))
-        
+            .pipe(shareReplay(1))
+
         this.user.subscribe((user) => {
             if (user) {
                 this.userDetails = user;
-                console.log(this.userDetails);
             }
             else {
                 this.userDetails = null;
@@ -41,5 +42,12 @@ export class AuthService {
             .then((res) => this.router.navigate(['/']));
     }
 
-    checkIfUserIs
+    isUserAdmin() {
+        if (this.admins.indexOf(this.userDetails.email) > -1) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
 }

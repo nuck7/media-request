@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MovieService } from '../core/services/movie.service'
 
 @Component({
   selector: 'app-search-results',
@@ -8,13 +9,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SearchResultsComponent implements OnInit {
 
   @Input() searchResults: Array<any>
-  @Output() movieClicked = new EventEmitter()
+  //@Output() movieClicked = new EventEmitter()
   columns = 3
 
-  constructor() { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    let matCardElement = document.getElementsByClassName('mat-card')[0]
   }
 
   setColumns(event) {
@@ -42,12 +42,8 @@ export class SearchResultsComponent implements OnInit {
     }
   }
 
-  addMovieToList(movie: any) {
-    console.log('Movie Title: ' + movie)
-    this.movieClicked.emit({
-      ...movie,
-      year: movie.release_date.split('-')[0]
-    })
-    //console.log('Clicked add to list button: ' + JSON.stringify(event.target.parentNode.nodeName))
+  addMovie(movie: Object) {
+    console.log('addMovie() Called')
+    this.movieService.addMovieToCart(movie)
   }
 }

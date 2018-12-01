@@ -9,23 +9,26 @@ import { Observable } from 'rxjs';
 })
 export class RequestService {
 
-    constructor(private http: HttpClient, private afs: AngularFirestore) { 
-        
+    constructor(private http: HttpClient, private afs: AngularFirestore) {
+
     }
 
     getPreviousRequests(user) {
         let requestCollection = this.afs.collection('requests', ref => ref.where('requestor.email', '==', user))
         return requestCollection.get()
-        
     }
-
 
     submitRequest(user, movieList) {
         let requestCollection = this.afs.collection('requests')
         let requestName = `${user}:${Date.now()}`
-        requestCollection.add({requestor: user, date:Date.now(), movies: movieList, status: "requested"})
-        .then(response => {
-            //console.log(response)
-        })
+        requestCollection.add({ requestor: user, date: Date.now(), movies: movieList, status: "requested" })
+            .then(response => {
+                //console.log(response)
+            })
+    }
+
+    updateRequestStatus(request_id, status) {
+        let requestCollection = this.afs.collection('requests')
+        requestCollection.doc(request_id).update({status: status})
     }
 }

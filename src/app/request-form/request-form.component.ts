@@ -26,7 +26,6 @@ export class RequestFormComponent implements OnInit {
   
     this.movieService.searchMovies(this.movieInput)
     .subscribe((data:any) => {
-      console.log(JSON.stringify(data.results))
       this.movieResults = data.results
     })
     return false;

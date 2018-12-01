@@ -1,6 +1,7 @@
-.mat-card {
+/*.mat-card {
   width: calc(100% - 70px);
   height: calc(100% - 70px);
+ 
 }
 .mat-card-content {
     overflow:auto;
@@ -17,4 +18,30 @@
 
 .mat-card-actions {
     height: 5%
+}
+*/
+
+mat-grid-tile figure {
+    align-items: flex-start!important;
+}
+
+mat-card-content {
+    margin-top: 50%;
+   /* background-color: white;*/
+    overflow:auto;
+    height: 15%;
+}
+
+mat-card {
+    height: 85%;
+    width: 85%;
+   
+}
+mat-card-actions {
+    margin-top: 25%
+}
+
+mat-card-actions button {    
+    background: #2C4B5D;
+    color: white
 }

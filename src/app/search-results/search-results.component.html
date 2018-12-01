@@ -1,18 +1,20 @@
 <div class="continer">
   <div class="row" *ngIf="searchResults">
-    <mat-grid-list cols="{{columns}}" rowHeight="750px" gutterSize="10px">
+    <mat-grid-list cols="{{columns}}">
       <div *ngFor="let movie of searchResults">
         <mat-grid-tile *ngIf="movie.title && movie.overview && movie.poster_path">
-          <mat-card (window:resize)="setColumns($event)" (ngInit)="setColumns($event)">
+          <mat-card [ngStyle]="{ 'background': 'url(http://image.tmdb.org/t/p/w500//' + movie.poster_path, 'background-size': 'contain',
+          'background-position': 'center',
+          'background-repeat': 'no-repeat' }" (window:resize)="setColumns($event)" (ngInit)="setColumns($event)">
             <mat-card-header>
-              <mat-card-title>{{ movie.title }}</mat-card-title>
+              <!--<mat-card-title>{{ movie.title }}</mat-card-title>-->
             </mat-card-header>
-            <img mat-card-image src="http://image.tmdb.org/t/p/w500//{{movie.poster_path}}">
+           <!-- <img mat-card-image src="http://image.tmdb.org/t/p/w500//{{movie.poster_path}}"> -->
             <mat-card-content >
-              <p>Overview: {{ movie.overview }}</p>
+              <!--<p>Overview: {{ movie.overview }}</p>-->
             </mat-card-content>
             <mat-card-actions align="end">
-              <button mat-button (click)="addMovieToList(movie)">ADD</button>
+              <button mat-button (click)="addMovie(movie)">ADD</button>
             </mat-card-actions>
           </mat-card>
         </mat-grid-tile>
