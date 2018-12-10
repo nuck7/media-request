@@ -28,6 +28,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HomeComponent } from './home/home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -60,7 +61,9 @@ import { HomeComponent } from './home/home.component';
     MatMenuModule,
     MatSelectModule,
     AngularFireAuthModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
+    
   ],
   entryComponents: [CartComponent],
   providers: [],

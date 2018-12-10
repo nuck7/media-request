@@ -2,9 +2,14 @@
   width: 50%;
   margin-left: 25%;
   margin-top: 10%;
+  opacity: .9;
 }
 
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+mat-card-content {
+  margin-left: 35px;
 }

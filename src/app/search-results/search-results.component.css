@@ -34,14 +34,13 @@ mat-card-content {
 
 mat-card {
     height: 85%;
-    width: 85%;
-   
+    width: 80%;
 }
 mat-card-actions {
-    margin-top: 25%
+    margin-top: 25%;
 }
 
 mat-card-actions button {    
     background: #2C4B5D;
-    color: white
+    color: white;
 }

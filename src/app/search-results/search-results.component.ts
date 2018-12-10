@@ -10,7 +10,7 @@ export class SearchResultsComponent implements OnInit {
 
   @Input() searchResults: Array<any>
   //@Output() movieClicked = new EventEmitter()
-  columns = 3
+  columns = 4
 
   constructor(private movieService: MovieService) { }
 
@@ -24,12 +24,12 @@ export class SearchResultsComponent implements OnInit {
     /*if (element > 1550) {
       this.columns = 5
     }
-
-    else if (element > 1200) {
+*/
+    if (element > 1200) {
       this.columns = 4
     }
-*/
-    if (element > 1100) {
+
+    else if (element > 900) {
       this.columns = 3
     }
 
@@ -43,7 +43,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   addMovie(movie: Object) {
-    console.log('addMovie() Called')
+    //console.log('addMovie() Called')
     this.movieService.addMovieToCart(movie)
   }
 }

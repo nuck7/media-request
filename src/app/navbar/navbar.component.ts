@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { CartComponent } from '../cart/cart.component';
+import { Component, OnInit } from '@angular/core'
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import { CartComponent } from '../cart/cart.component'
+import { AuthService } from  '../core/services/auth.service'
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { CartComponent } from '../cart/cart.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public authService: AuthService) { }
 
   ngOnInit() {
   }
