@@ -4,18 +4,22 @@ import { catchError, map, tap } from 'rxjs/operators'
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RequestService {
 
-    constructor(private http: HttpClient, private afs: AngularFirestore, private snackBar: MatSnackBar) {
+    constructor(private http: HttpClient, private afs: AngularFirestore, private snackBar: MatSnackBar, private authService: AuthService) {
 
     }
 
     getPreviousRequests(user) {
         let requestCollection = this.afs.collection('requests', ref => ref.where('requestor.email', '==', user))
+        if (this.authService.isUserAdmin) {
+            requestCollection = this.afs.collection('requests', ref => ref.where('status', '==', 'requested'))
+        }
         return requestCollection.get()
     }
 

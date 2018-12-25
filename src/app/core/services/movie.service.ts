@@ -26,7 +26,8 @@ export class MovieService {
     let movieAlreadyInCart = false
     console.log(`Movie: ${JSON.stringify(movie)}`)
     for (let i=0; i<this.cart.data.length; i++) {
-      if (this.cart.data[i].id == movie.id) {
+      let cartItem: any = this.cart.data[i]
+      if (cartItem.id == movie.id) {
         movieAlreadyInCart = true
       }
     }
